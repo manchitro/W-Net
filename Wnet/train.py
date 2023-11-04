@@ -58,6 +58,8 @@ if __name__ == '__main__':
             #tick = time.time()
             optimizer.zero_grad()
             pred,pad_pred = model(x)
+            print("pred shape: "+str(pred.shape))
+            print("pad_pred shape: "+str(pad_pred.shape))
             #t_forward += time.time()-tick
             #pred.cuda()
             #tick = time.time()
