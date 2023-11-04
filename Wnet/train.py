@@ -1,4 +1,5 @@
 import torch
+from torchsummary import summary
 import numpy as np
 from configure import Config
 from model import WNet
@@ -15,7 +16,7 @@ if __name__ == '__main__':
     #model = torch.nn.DataParallel(Net(True))
     model = torch.nn.DataParallel(WNet())
     model.cuda()
-    #model.to(device)
+    summary(model,(3,224,224))
     model.train()
     #optimizer
     optimizer = torch.optim.SGD(model.parameters(),lr = config.init_lr)
