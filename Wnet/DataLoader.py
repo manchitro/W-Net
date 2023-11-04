@@ -105,9 +105,9 @@ class DataLoader():
 
     def get_dataset(self,raw_data,shape,batch_size):
         dataset = []
-        print("shape: " + shape)
+        print("shape: " + str(shape))
         for batch_id in range(0,shape[0],batch_size):
-            print("batch_id: " + batch_id)
+            print("batch_id: " + str(batch_id))
             batch = raw_data[batch_id:min(shape[0],batch_id+batch_size)]
             if(self.mode == "train"):
                 weight = self.cal_weight(batch,batch.shape)
