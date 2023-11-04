@@ -14,7 +14,7 @@ if __name__ == '__main__':
     dataset = DataLoader(config.pascalImageFolder,"train")
     dataloader = dataset.torch_loader()
     #model = torch.nn.DataParallel(Net(True))
-    model = torch.nn.DataParallel(WNet())
+    # model = torch.nn.DataParallel(WNet())
     model = WNet(4)
     model.cuda()
     summary(model,(3,224,224))
