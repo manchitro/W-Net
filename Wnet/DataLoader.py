@@ -111,7 +111,6 @@ class DataLoader():
             if(self.mode == "train"):
                 weight = self.cal_weight(batch,batch.shape)
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float(),torch.from_numpy(weight).float()))
-                del tmp_weight
             else:
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float()))
         np.get_default_memory_pool().free_all_blocks()
