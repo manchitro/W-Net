@@ -113,7 +113,6 @@ class DataLoader():
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float(),torch.from_numpy(weight).float()))
             else:
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float()))
-        np.get_default_memory_pool().free_all_blocks()
         return Data.ConcatDataset(dataset)
 
 
