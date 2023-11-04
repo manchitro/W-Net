@@ -109,8 +109,7 @@ class DataLoader():
             print(batch_id)
             batch = raw_data[batch_id:min(shape[0],batch_id+batch_size)]
             if(self.mode == "train"):
-                tmp_weight = self.cal_weight(batch,batch.shape)
-                weight = np.asnumpy(tmp_weight)
+                weight = self.cal_weight(batch,batch.shape)
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float(),torch.from_numpy(weight).float()))
                 del tmp_weight
             else:
