@@ -14,7 +14,7 @@ class DataLoader():
     #initialization
     #datapath : the data folder of bsds500
     #mode : train/test/val
-    def __init__(self, datapath,mode):
+    def __init__(self, datapath,mode,debug=False):
         #image container
         self.raw_data = []
         self.mode = mode
@@ -32,6 +32,9 @@ class DataLoader():
             with open(train_list_file) as f:
                 for line in f.readlines():
                     file_list.append(os.path.join(train_image_path,line[0:-1]+".jpg"))
+        if debug:
+            file_list = file_list[0:13]
+
         #load the images
         for file_name in file_list:
             with Image.open(file_name) as image:
@@ -45,9 +48,9 @@ class DataLoader():
         
         #calculate weights by 2
         if(mode == "train"):
-            self.dataset = self.get_dataset(self.raw_data, self.raw_data.shape,75)
+            self.dataset = self.get_dataset(self.raw_data, self.raw_data.shape, config.BatchSize, debug)
         else:
-            self.dataset = self.get_dataset(self.raw_data, self.raw_data.shape,75)
+            self.dataset = self.get_dataset(self.raw_data, self.raw_data.shape, config.BatchSize, debug)
     
     def scale(self):
         for i in range(len(self.raw_data)):
@@ -103,14 +106,17 @@ class DataLoader():
         #print(dist)
         return res
 
-    def get_dataset(self,raw_data,shape,batch_size):
+    def get_dataset(self,raw_data,shape,batch_size,debug=False):
         dataset = []
         print("shape: " + str(shape))
         for batch_id in range(0,shape[0],batch_size):
             print("batch_id: " + str(batch_id))
             batch = raw_data[batch_id:min(shape[0],batch_id+batch_size)]
             if(self.mode == "train"):
-                weight = self.cal_weight(batch,batch.shape)
+                if debug:
+                    weight = np.random.rand(5, 1, 224, 224, 7, 7)
+                else:
+                    weight = self.cal_weight(batch,batch.shape)
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float(),torch.from_numpy(weight).float()))
             else:
                 dataset.append(Data.TensorDataset(torch.from_numpy(batch/256).float()))

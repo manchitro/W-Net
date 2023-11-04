@@ -8,10 +8,17 @@ from Ncuts import NCutsLoss
 import time
 import os
 
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--debug', action='store_true', help='Enable debug mode')
+
+args = parser.parse_args()
+
 config = Config()
 os.environ["CUDA_VISIBLE_DEVICES"]=config.cuda_dev_list
 if __name__ == '__main__':
-    dataset = DataLoader(config.pascalImageFolder,"train")
+    dataset = DataLoader(config.pascalImageFolder,"train", args.debug)
     dataloader = dataset.torch_loader()
     #model = torch.nn.DataParallel(Net(True))
     # model = torch.nn.DataParallel(WNet())
