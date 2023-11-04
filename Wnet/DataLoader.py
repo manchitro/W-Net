@@ -28,6 +28,7 @@ class DataLoader():
         #find all the images
         else:
             train_list_file = os.path.join(config.pascal, config.imagelist)
+            print(train_list_file)
             with open(train_list_file) as f:
                 for line in f.readlines():
                     file_list.append(os.path.join(train_image_path,line[0:-1]+".jpg"))

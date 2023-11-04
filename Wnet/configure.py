@@ -13,9 +13,9 @@ class Config:
             self.ChNum.append(self.ChNum[-1]*2)
         #data configure
         self.pascal = os.path.join(os.getcwd(),"VOC2012") # "../VOC2012/JPEGImages"
-        self.pascalImageFolder = os.path.join(os.getcwd(),"VOC2012/JPEGImages") # "../VOC2012/JPEGImages"
+        self.pascalImageFolder = os.path.join(os.getcwd(),"VOC2012", "JPEGImages") # "../VOC2012/JPEGImages"
         self.bsds = "../BSR/BSDS500/data/images/"
-        self.imagelist = "ImageSets/Segmentation/train.txt"
+        self.imagelist = os.path.join("ImageSets", "Segmentation", "train.txt") # "ImageSets/Segmentation/train.txt"
         self.BatchSize = 6
         self.Shuffle = True
         self.LoadThread = 4
