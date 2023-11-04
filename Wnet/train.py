@@ -24,7 +24,7 @@ if __name__ == '__main__':
     # model = torch.nn.DataParallel(WNet())
     model = WNet(4)
     model.cuda()
-    summary(model,(3,224,224))
+    # summary(model,(3,224,224))
     model.train()
     #optimizer
     optimizer = torch.optim.SGD(model.parameters(),lr = config.init_lr)
