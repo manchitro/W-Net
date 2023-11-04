@@ -1,4 +1,4 @@
-
+import os
 class Config:
     
     def __init__(self):
@@ -12,7 +12,8 @@ class Config:
         for i in range(self.MaxLv-1):
             self.ChNum.append(self.ChNum[-1]*2)
         #data configure
-        self.pascal = "../VOC2012/JPEGImages"
+        self.pascal = os.path.join(os.getcwd(),"VOC2012") # "../VOC2012/JPEGImages"
+        self.pascalImageFolder = os.path.join(os.getcwd(),"VOC2012/JPEGImages") # "../VOC2012/JPEGImages"
         self.bsds = "../BSR/BSDS500/data/images/"
         self.imagelist = "ImageSets/Segmentation/train.txt"
         self.BatchSize = 6

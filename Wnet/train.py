@@ -10,7 +10,7 @@ import os
 config = Config()
 os.environ["CUDA_VISIBLE_DEVICES"]=config.cuda_dev_list
 if __name__ == '__main__':
-    dataset = DataLoader(config.pascal,"train")
+    dataset = DataLoader(config.pascalImageFolder,"train")
     dataloader = dataset.torch_loader()
     #model = torch.nn.DataParallel(Net(True))
     model = torch.nn.DataParallel(WNet())
